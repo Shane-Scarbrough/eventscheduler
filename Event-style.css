@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    border: 2px solid #000;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+h1 {
+    width: 100%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#Today {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.current_month_arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.arrow_group {
+    margin-right: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.up_arrow {
+    cursor: pointer;
+    font-size: 20px;
+    color: #606060;
+    border: none;
+    background: #fff;
+}
+
+.up_arrow:hover {
+    background: #e0e0e0;
+}
+
+.down_arrow {
+    cursor: pointer;
+    font-size: 20px;
+    color: #606060;
+    border: none;
+    background: #fff;
+}
+
+.down_arrow:hover {
+    background: #e0e0e0;
+}
+
+.current_month {
+    margin-left: 20px;
+}
+
+.weekday_menu {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 30px;
+}
+
+.weekday_item {
+    font-size: 20px;
+}
+
+#day_row {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+}
+
+.buttonday {
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+}
+
+.buttonday:hover {
+    background-color: #e0e0e0;
+    border-radius: 50%;
+}
