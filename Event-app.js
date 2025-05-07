@@ -1,7 +1,9 @@
 let date = new Date();
 const today = document.getElementById("Today");
 const month = document.getElementById("current_month");
-const dayRow = document.getElementById("day_row");
+const dayRow = document.querySelector(".day_row");
+const timeSelect = document.querySelector(".times");
+const dayPage = document.getElementById("date_selected")
 
 let currentDay = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
@@ -16,8 +18,16 @@ let currentMonth = new Intl.DateTimeFormat("en-US", {
 }).format(date);
 month.innerHTML = `${currentMonth}`;
 
+let getYear = date.getFullYear();
+let getMonth = date.getMonth();
+
+function getDaysInMonth(year, month) {
+    console.log(new Date(year, month + 1, 0).getDate());
+    return new Date(year, month + 1, 0).getDate();
+}
+getDaysInMonth(getYear, getMonth);
+
 const scheduleEvent = (dayOfMonth) => {
-    const dayPage = document.createElement('h3');
     date.setDate(dayOfMonth);
     let showDate = new Intl.DateTimeFormat('en-US', {
         weekday: "long",
@@ -26,23 +36,27 @@ const scheduleEvent = (dayOfMonth) => {
         year: "numeric"
     }).format(date);
     dayPage.textContent = `${showDate}`;
+    timeSelect.appendChild(dayPage);
     
 }
 
-const day = [
-    ['1', 'day', () => scheduleEvent(1)],
-    ['2', 'day', () => scheduleEvent()],
-    ['3', 'day', () => scheduleEvent()],
-    ['4', 'day', () => scheduleEvent()],
-    ['5', 'day', () => scheduleEvent()],
-    ['6', 'day', () => scheduleEvent()],
-    ['7', 'day', () => scheduleEvent()],
-];
+const day = [];
 
+for (let i = 1; i <= getDaysInMonth(getYear, getMonth); i++) {
+    day.push([`${i}`, 'day', () => scheduleEvent(i)]);
+}
+
+let row;
 day.forEach((btn, i) => {
+    if (i % 7 ===0) {
+        row = document.createElement('div');
+        row.className = 'row';
+        dayRow.appendChild(row);
+    }
+
     const button = document.createElement('button');
     button.textContent = btn[0];
     button.className = `button_${btn[1]}`;
     button.onclick = btn[2];
-    dayRow.appendChild(button);
+    row.appendChild(button);
 })
