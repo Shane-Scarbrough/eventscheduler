@@ -16,6 +16,19 @@ let currentMonth = new Intl.DateTimeFormat("en-US", {
 }).format(date);
 month.innerHTML = `${currentMonth}`;
 
+const scheduleEvent = (dayOfMonth) => {
+    const dayPage = document.createElement('h3');
+    date.setDate(dayOfMonth);
+    let showDate = new Intl.DateTimeFormat('en-US', {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    }).format(date);
+    dayPage.textContent = `${showDate}`;
+    
+}
+
 const day = [
     ['1', 'day', () => scheduleEvent(1)],
     ['2', 'day', () => scheduleEvent()],
@@ -29,21 +42,7 @@ const day = [
 day.forEach((btn, i) => {
     const button = document.createElement('button');
     button.textContent = btn[0];
-    button.className = `button${btn[1]}`;
+    button.className = `button_${btn[1]}`;
     button.onclick = btn[2];
     dayRow.appendChild(button);
 })
-
-
-const scheduleEvent = (dayOfMonth) => {
-    const dayPage = document.createElement('h3');
-    date.setDate(dayOfMonth);
-    let showDate = new Intl.DateTimeFormat('en-US', {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-        year: "numeric"
-    }).format(date);
-    dayPage.textContent = `${showDate}`;
-    
-}
